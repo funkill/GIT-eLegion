@@ -2,6 +2,14 @@
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+for dir in *_data; do
+	filename="${dir%_data}.sketch"
+	chflags hidden "$dir"
+	cd "$dir"
+	zip -r ../"$filename" *
+	cd -
+done
+
 git init
 
 for file in *.sh; do
