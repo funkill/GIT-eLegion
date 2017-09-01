@@ -3,6 +3,10 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 for dir in *_data; do
+	if [ ! -e "${dir}" ]; then
+		continue;
+	fi
+	
 	filename="${dir%_data}.sketch"
 	chflags hidden "$dir"
 	cd "$dir"
