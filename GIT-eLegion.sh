@@ -52,3 +52,16 @@ done
 SCRIPT
 
 chmod u+x .git/hooks/post-merge
+
+cat <<SCRIPT>> .git/hooks/post-checkout
+#!/usr/bin/env bash
+for dir in *_data; do
+	filename="${dir%_data}.sketch"
+	rm $filename
+	cd "$dir"
+	zip -r ../"$filename" *
+	cd -
+done
+SCRIPT
+
+chmod u+x .git/hooks/post-checkout

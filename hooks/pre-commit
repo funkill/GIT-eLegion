@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Переводим все .sketch в .zip
+for file in *.sketch; do
+	git reset "$file"
+	git update-index --assume-unchanged "$file"
+	#Создаем директорию для распакованных файлов
+	dir="${file%.sketch}"_data
+	mkdir -p "$dir"
+	rm -rf "$dir"/*
+	#Скрывем директорию
+	chflags hidden "$dir"
+	#Распаковываем архив в директорию
+	unzip "$file" -d "$dir"
+	git add --all "$dir"
+done

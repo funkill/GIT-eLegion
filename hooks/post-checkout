@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+for dir in *_data; do
+	filename="${dir%_data}.sketch"
+	rm $filename
+	cd "$dir"
+	zip -r ../"$filename" *
+	cd -
+done
