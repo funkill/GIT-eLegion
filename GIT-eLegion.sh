@@ -6,7 +6,7 @@ for dir in *_data; do
 	if [ ! -e "${dir}" ]; then
 		continue;
 	fi
-	
+
 	filename="${dir%_data}.sketch"
 	chflags hidden "$dir"
 	cd "$dir"
@@ -44,7 +44,7 @@ cat <<SCRIPT >> .git/hooks/post-merge
 #!/usr/bin/env bash
 for dir in *_data; do
 	filename="\${dir%_data}.sketch"
-	rm \$filename
+	rm "\$filename"
 	cd "\$dir"
 	zip -r ../"\$filename" *
 	cd -
@@ -57,7 +57,7 @@ cat <<SCRIPT >> .git/hooks/post-checkout
 #!/usr/bin/env bash
 for dir in *_data; do
 	filename="${dir%_data}.sketch"
-	rm $filename
+	rm "$filename"
 	cd "$dir"
 	zip -r ../"$filename" *
 	cd -
