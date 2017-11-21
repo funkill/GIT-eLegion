@@ -40,7 +40,7 @@ SCRIPT
 
 chmod u+x .git/hooks/pre-commit
 
-cat <<SCRIPT > .git/hooks/post-merge
+cat <<SCRIPT >> .git/hooks/post-merge
 #!/usr/bin/env bash
 for dir in *_data; do
 	filename="\${dir%_data}.sketch"
@@ -53,7 +53,7 @@ SCRIPT
 
 chmod u+x .git/hooks/post-merge
 
-cat <<SCRIPT>> .git/hooks/post-checkout
+cat <<SCRIPT >> .git/hooks/post-checkout
 #!/usr/bin/env bash
 for dir in *_data; do
 	filename="${dir%_data}.sketch"
